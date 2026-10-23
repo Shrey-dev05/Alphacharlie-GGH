@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+*.db
+*.sqlite
+*.sqlite3
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/storage/
+backend/uploads/
+backend/reports/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+frontend/.env.local
+frontend/.env*.local
+frontend/out/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Misc
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+*.tsbuildinfo

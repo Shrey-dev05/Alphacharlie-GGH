@@ -1,0 +1,348 @@
+{
+  "_meta": {
+    "source": "Legal Metrology (Packaged Commodities) Rules, 2011 (as amended); Food Safety and Standards (Labelling and Display) Regulations, 2020; Plastic Waste Management Rules, 2016 (as amended, incl. the Jan 2025 Rule 11(1A) marking/labelling amendment)",
+    "disclaimer": "This file is a DEVELOPMENT SEED for the validation engine, not a certified legal reference. Before any production/enforcement use, have a domain expert in each regulation verify every threshold below against the current Gazette-notified text and any state-level amendments, and update accordingly. Regulations referenced here (especially Plastic Waste Management EPR rules) are actively being amended year over year -- re-verify before relying on any specific figure.",
+    "last_reviewed": "2026-09-03"
+  },
+  "regulations": {
+    "legal_metrology": {
+      "name": "Legal Metrology (Packaged Commodities) Rules, 2011",
+      "applicability": "always",
+      "description": "Baseline declarations required on every pre-packaged commodity sold in India, regardless of category."
+    },
+    "fssai_labelling": {
+      "name": "Food Safety and Standards (Labelling and Display) Regulations, 2020",
+      "applicability": "food",
+      "description": "Additional declarations required specifically for pre-packaged food products, on top of (not instead of) Legal Metrology's net quantity/MRP/consumer-care requirements, which FSSAI's own regulation explicitly cross-references rather than duplicates."
+    },
+    "plastic_waste_management": {
+      "name": "Plastic Waste Management Rules, 2016, as amended (Rule 11(1A) marking & labelling requirements, EPR)",
+      "applicability": "plastic_packaging",
+      "description": "Marking requirements for plastic packaging material itself (distinct from the product inside it) -- material identification, recycled-content/compostability claims, and EPR traceability."
+    }
+  },
+  "mandatory_declarations": [
+    {
+      "regulation": "legal_metrology",
+      "rule_id": "LM_PCR_R6_1_A",
+      "rule_reference": "Rule 6(1)(a)",
+      "field": "manufacturer_details",
+      "label": "Name & Address of Manufacturer/Packer/Importer",
+      "severity": "critical",
+      "match_type": "presence",
+      "keywords": [
+        "mfg by",
+        "mfg. by",
+        "mfd by",
+        "mfd. by",
+        "manufactured by",
+        "marketed by",
+        "packed by",
+        "pkd by",
+        "pkd. by",
+        "imported by",
+        "mfg & pkd by",
+        "mfg. & pkd. by",
+        "manufactured & packed by",
+        "manufactured and packed by",
+        "marketed & distributed by",
+        "distributed by",
+        "lic. under",
+        "licensed by",
+        "pvt. ltd.",
+        "pvt ltd",
+        "industries ltd",
+        "industrial area",
+        "regd. off"
+      ]
+    },
+    {
+      "regulation": "legal_metrology",
+      "rule_id": "LM_PCR_R6_1_B",
+      "rule_reference": "Rule 6(1)(b)",
+      "field": "common_name",
+      "label": "Common / Generic Name of the Commodity",
+      "severity": "major",
+      "match_type": "presence",
+      "keywords": [
+        "flour",
+        "atta",
+        "wheat",
+        "rice",
+        "oil",
+        "biscuits",
+        "biscuit",
+        "namkeen",
+        "noodles",
+        "snack",
+        "snacks",
+        "tea",
+        "coffee",
+        "sugar",
+        "salt",
+        "spices",
+        "masala",
+        "powder",
+        "soap",
+        "detergent",
+        "shampoo",
+        "cream",
+        "lotion",
+        "toothpaste",
+        "dal",
+        "pulses",
+        "cereal",
+        "pickle",
+        "sauce",
+        "ketchup",
+        "chips",
+        "juice",
+        "beverage",
+        "chocolate",
+        "confectionery",
+        "commodity",
+        "name of commodity"
+      ]
+    },
+    {
+      "regulation": "legal_metrology",
+      "rule_id": "LM_PCR_R6_1_C",
+      "rule_reference": "Rule 6(1)(c)",
+      "field": "net_quantity",
+      "label": "Net Quantity in Standard Units (g/kg/ml/l/number)",
+      "severity": "critical",
+      "match_type": "regex",
+      "pattern": "(?:net\\s*(?:qty|quantity|weight|wt|contents?)[:\\s\\-\\.]*)?\\b\\d+(\\.\\d+)?\\s*(?:g|gm|gram|grams|kg|ml|millilitre|millilitres|l|litre|litres|mg|n|u|units?|pcs?|pieces?|count|tablets?|capsules?|sheets?|pairs?|sets?|wipes?)\\b"
+    },
+    {
+      "regulation": "legal_metrology",
+      "rule_id": "LM_PCR_R6_1_D",
+      "rule_reference": "Rule 6(1)(d)",
+      "field": "mfg_date",
+      "label": "Month & Year of Manufacture/Packing/Import",
+      "severity": "major",
+      "match_type": "regex",
+      "pattern": "(?:(?:mfg|pkd|packed|mfd|date)[^\\n]{0,20})?(?:\\b(?:0?[1-9]|[12][0-9]|3[01])[\\/\\-\\.](?:0?[1-9]|1[0-2])[\\/\\-\\.](?:20\\d{2}|\\d{2})\\b|\\b(?:0?[1-9]|1[0-2])[\\/\\-\\.](?:20\\d{2}|\\d{2})\\b|\\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*[\\.\\s\\-\\/]*(?:20\\d{2}|\\d{2})\\b)"
+    },
+    {
+      "regulation": "legal_metrology",
+      "rule_id": "LM_PCR_R6_1_E",
+      "rule_reference": "Rule 6(1)(e)",
+      "field": "mrp",
+      "label": "Retail Sale Price / MRP inclusive of all taxes",
+      "severity": "critical",
+      "match_type": "regex",
+      "pattern": "(?:(?:mrp|m\\.r\\.p|maximum retail price|max\\.?\\s*retail price)[^\\d\\n]{0,60}(?:₹|rs\\.?|inr)?\\s*\\d+(?:[.,]\\d{1,2})?(?:\\s*\\/-)?|(?:₹|rs\\.?|inr)\\s*:?\\s*\\d+(?:[.,]\\d{1,2})?(?:\\s*\\/-)?[^0-9\\n]{0,60}(?:inclusive of all taxes|incl\\.?\\s*of all taxes|incl\\.?\\s*taxes))"
+    },
+    {
+      "regulation": "legal_metrology",
+      "rule_id": "LM_PCR_R6_1_F",
+      "rule_reference": "Rule 6(1)(f) / Rule 6(8)",
+      "field": "consumer_care",
+      "label": "Consumer Care / Customer Support Details (phone, email or address)",
+      "severity": "major",
+      "match_type": "regex",
+      "pattern": "(?:consumer\\s*care|customer\\s*care|toll[- ]?free|helpline|consumer\\s*cell|feedback|queries|queries\\s*&\\s*feedback|contact\\s*us|care@)[^\\n]{0,100}(?:\\d{6,12}|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})"
+    },
+    {
+      "regulation": "legal_metrology",
+      "rule_id": "LM_PCR_R6_1_G",
+      "rule_reference": "Rule 6(1) (2017 amendment)",
+      "field": "country_of_origin",
+      "label": "Country of Origin (mandatory for imported goods)",
+      "severity": "minor",
+      "match_type": "presence",
+      "keywords": [
+        "country of origin",
+        "made in",
+        "product of",
+        "produce of",
+        "manufactured in india",
+        "packed in india",
+        "origin:"
+      ]
+    },
+    {
+      "regulation": "legal_metrology",
+      "rule_id": "LM_PCR_R6_BEST_BEFORE",
+      "rule_reference": "Rule 6 (2017 amendment)",
+      "field": "best_before",
+      "label": "Best Before / Use By / Date of Expiry (where applicable)",
+      "severity": "minor",
+      "match_type": "presence",
+      "keywords": [
+        "best before",
+        "use by",
+        "use-by",
+        "expiry",
+        "exp.",
+        "exp:",
+        "exp ",
+        "exp date",
+        "date of expiry",
+        "best by",
+        "use before",
+        "shelf life",
+        "bb:",
+        "bb ",
+        "consume within",
+        "validity"
+      ]
+    },
+    {
+      "regulation": "fssai_labelling",
+      "rule_id": "FSSAI_LDR_2020_LICENSE",
+      "rule_reference": "FSS (Labelling and Display) Regulations, 2020, Reg. 3",
+      "field": "fssai_license",
+      "label": "FSSAI Logo & License/Registration Number",
+      "severity": "critical",
+      "match_type": "regex",
+      "pattern": "(?:fssai|lic\\.?\\s*no\\.?|license\\s*no\\.?|licence\\s*no\\.?)[^\\n]{0,30}\\b\\d{10,14}\\b|\\bfssai\\b"
+    },
+    {
+      "regulation": "fssai_labelling",
+      "rule_id": "FSSAI_LDR_2020_NUTRITION",
+      "rule_reference": "FSS (Labelling and Display) Regulations, 2020, Reg. 5",
+      "field": "fssai_nutrition",
+      "label": "Nutritional Information (per 100g/100ml and/or per serving)",
+      "severity": "major",
+      "match_type": "presence",
+      "keywords": [
+        "energy",
+        "kcal",
+        "protein",
+        "carbohydrate",
+        "nutrition",
+        "nutritional facts",
+        "nutritional information",
+        "per 100g",
+        "per 100ml",
+        "fat",
+        "sugar",
+        "sodium"
+      ]
+    },
+    {
+      "regulation": "fssai_labelling",
+      "rule_id": "FSSAI_LDR_2020_VEG_NONVEG",
+      "rule_reference": "FSS (Labelling and Display) Regulations, 2020, Reg. 7",
+      "field": "fssai_veg_nonveg",
+      "label": "Vegetarian / Non-Vegetarian Logo Declaration",
+      "severity": "major",
+      "match_type": "presence",
+      "keywords": [
+        "vegetarian",
+        "non-vegetarian",
+        "non vegetarian",
+        "pure veg",
+        "green dot",
+        "contains egg",
+        "veg"
+      ]
+    },
+    {
+      "regulation": "fssai_labelling",
+      "rule_id": "FSSAI_LDR_2020_ALLERGEN",
+      "rule_reference": "FSS (Labelling and Display) Regulations, 2020, Reg. 6",
+      "field": "fssai_allergen",
+      "label": "Allergen Declaration (where applicable ingredients are present)",
+      "severity": "minor",
+      "match_type": "presence",
+      "keywords": [
+        "contains",
+        "allergen",
+        "may contain traces",
+        "allergy advice",
+        "contains gluten",
+        "contains milk",
+        "contains wheat",
+        "contains nuts"
+      ]
+    },
+    {
+      "regulation": "fssai_labelling",
+      "rule_id": "FSSAI_LDR_2020_DATE",
+      "rule_reference": "FSS (Labelling and Display) Regulations, 2020, Reg. 8",
+      "field": "best_before",
+      "label": "Date of Manufacture/Packing AND Expiry/Use-By/Best-Before (food-specific: both required, not either/or)",
+      "severity": "critical",
+      "match_type": "presence",
+      "keywords": [
+        "best before",
+        "use by",
+        "use-by",
+        "expiry",
+        "exp.",
+        "exp:",
+        "exp ",
+        "exp date",
+        "date of expiry",
+        "best by",
+        "use before",
+        "shelf life",
+        "date of manufacture",
+        "mfg date",
+        "mfg.",
+        "pkd.",
+        "packed on"
+      ]
+    },
+    {
+      "regulation": "plastic_waste_management",
+      "rule_id": "PWM_R11_1A_MATERIAL",
+      "rule_reference": "PWM Rules 2016, Rule 11(1A) (as amended Jan 2025)",
+      "field": "plastic_material_code",
+      "label": "Plastic Material/Polymer Type Identification (e.g. PET, HDPE, LDPE, PP, PS, PVC)",
+      "severity": "major",
+      "match_type": "regex",
+      "pattern": "\\b(pet|hdpe|ldpe|pp|ps|pvc|pet\\s*01|hdpe\\s*02|ldpe\\s*04|pp\\s*05)\\b"
+    },
+    {
+      "regulation": "plastic_waste_management",
+      "rule_id": "PWM_R11_1A_EPR",
+      "rule_reference": "PWM Rules 2016, Rule 11(1A)",
+      "field": "plastic_epr_number",
+      "label": "EPR Registration Certificate Number (CPCB)",
+      "severity": "major",
+      "match_type": "regex",
+      "pattern": "epr[^\\n]{0,20}(reg|certificate|no)[^\\n]{0,20}[a-z0-9\\/]{4,}"
+    },
+    {
+      "regulation": "plastic_waste_management",
+      "rule_id": "PWM_R11_1A_RECYCLED_CLAIM",
+      "rule_reference": "PWM Rules 2016, Rule 11(1A); IS 14534:2023",
+      "field": "plastic_recycled_content",
+      "label": "Recycled Content Declaration (if claiming 'recycled' -- must state % and reference IS 14534:2023) or Compostability Declaration (IS/ISO 17088:2021)",
+      "severity": "minor",
+      "match_type": "presence",
+      "keywords": ["recycled", "recyclable", "compostable", "is 14534", "iso 17088"]
+    }
+  ],
+  "font_size_rules": {
+    "regulation": "legal_metrology",
+    "rule_id": "LM_PCR_R7",
+    "rule_reference": "Rule 7",
+    "description": "Minimum letter/numeral height for declarations on the Principal Display Panel (PDP). Letters: not less than 1mm in any case. Numerals for weight/volume follow Table I, banded by PDP area; width of any letter/numeral must be >= 1/3 of its height (except '1', 'i', 'I', 'l').",
+    "min_letter_height_mm": 1.0,
+    "numeral_height_by_pdp_area_mm": [
+      {"max_area_cm2": 100, "min_numeral_height_mm": 2},
+      {"max_area_cm2": 500, "min_numeral_height_mm": 4},
+      {"max_area_cm2": null, "min_numeral_height_mm": 6}
+    ],
+    "min_stroke_width_ratio": 0.333
+  },
+  "misleading_pricing_patterns": [
+    {
+      "rule_id": "LM_PCR_R18_ECOMM",
+      "rule_reference": "Rule 6 read with 2021 e-commerce amendment",
+      "description": "Flag listings that show a struck-through/anchor price without a clearly stated, inclusive-of-tax MRP for the actual pack sold.",
+      "field": "mrp"
+    },
+    {
+      "rule_id": "LM_UNIT_PRICE_OBSCURED",
+      "rule_reference": "Rule 6(1)(c)",
+      "description": "Net quantity present but in a non-standard unit (e.g. 'family pack', 'jumbo size') without an accompanying standard metric declaration.",
+      "field": "net_quantity"
+    }
+  ]
+}

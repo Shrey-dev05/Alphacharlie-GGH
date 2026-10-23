@@ -1,0 +1,13 @@
+path: /home/claude/legal-metrology-compliance/backend/app/ml/datasets/synthetic_pdp
+train: images/train
+val: images/val
+names:
+  0: net_quantity
+  1: mrp
+  2: manufacturer_details
+  3: mfg_date
+  4: consumer_care
+  5: common_name
+  6: country_of_origin
+  7: best_before
+  8: fssai_license

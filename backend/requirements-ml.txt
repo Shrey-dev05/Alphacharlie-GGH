@@ -1,0 +1,11 @@
+# Optional extras for retraining/extending the ML models in app/ml/.
+# NOT required to run the core app -- USE_TRAINED_DETECTOR defaults to False
+# in app/services/cv_service.py, and the import is lazy, so the base
+# requirements.txt install works fine without this file.
+#
+# Install with: pip install -r requirements-ml.txt --break-system-packages
+#
+# Pulls in PyTorch (~2-5GB depending on platform/CUDA) -- that's why this
+# is kept separate from requirements.txt rather than bundled in.
+
+ultralytics==8.4.138
